@@ -27,7 +27,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Email(message = "Email should be valid")
     @NotEmpty(message = "Email should not be empty")
     @Column(name = "email", nullable = false, unique = true)
@@ -104,11 +104,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -146,5 +146,16 @@ public class User implements UserDetails {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
     }
 }

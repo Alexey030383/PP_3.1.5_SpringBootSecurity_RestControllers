@@ -58,7 +58,7 @@ public class ApiController {
     public ResponseEntity<HttpStatus> editUser(@RequestBody @Valid User user,
                                                BindingResult bindingResult) {
         Optional<User> userByEmail = userService.findByEmail(user.getEmail());
-        if (userByEmail.isPresent() && (!userByEmail.get().getId().equals(user.getId()))) {
+        if (userByEmail.isPresent()) {
             bindingResult.rejectValue("email", "error.email",
                     "This email is already in use");
         }
