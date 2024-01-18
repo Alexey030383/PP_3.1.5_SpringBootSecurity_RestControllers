@@ -52,7 +52,6 @@ public class ApiController {
 
         userService.add(user);
         return "redirect:/admin/users/";
-//        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/users")
