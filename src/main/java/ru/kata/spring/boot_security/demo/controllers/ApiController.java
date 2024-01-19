@@ -36,8 +36,8 @@ public class ApiController {
     }
 
     @PostMapping("/users")
-    public String createUser(@RequestBody @Valid User user,
-                             BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid User user,
+                                                 BindingResult bindingResult) {
         Optional<User> userByEmail = userService.findByEmail(user.getEmail());
         if (userByEmail.isPresent()) {
             bindingResult.rejectValue("email", "error.email",
@@ -51,7 +51,7 @@ public class ApiController {
         }
 
         userService.add(user);
-        return "redirect:/admin/users/";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/users")
