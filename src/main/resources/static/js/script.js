@@ -215,6 +215,8 @@ addNewUserForm.addEventListener('submit', event => {
                 console.log('Запрос на добавление юзера успешно отправлен')
                 showAlert(`The user with email '${email}' was added successfully`, 'alert-success', 'user-added-alert')
                 refreshTable()
+                const tabUserList = document.getElementById('tab-users-list')
+                tabUserList.click()
             } else {
                 response.json().then(json => {
                     console.log('Произошла ошибка при добавлении юзера')

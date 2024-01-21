@@ -57,12 +57,6 @@ public class ApiController {
     @PatchMapping("/users")
     public ResponseEntity<HttpStatus> editUser(@RequestBody @Valid User user,
                                                BindingResult bindingResult) {
-        Optional<User> userByEmail = userService.findByEmail(user.getEmail());
-        if (userByEmail.isPresent()) {
-            bindingResult.rejectValue("email", "error.email",
-                    "This email is already in use");
-        }
-
         if (bindingResult.hasErrors()) {
             List<String> errorMessages = bindingResult.getFieldErrors().stream()
                     .map(error -> error.getDefaultMessage())
